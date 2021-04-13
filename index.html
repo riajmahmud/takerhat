@@ -1,1 +1,393 @@
-<h2 style="text-align:center;">Welcome!</h2>
+<html>
+<head>
+<meta charset="UTF-8"> 
+<title>Takerhat</title>
+
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/basic.css">
+
+<style>
+*
+{
+    box-sizing: border-box;
+}
+
+.primary
+{
+    max-width: 1024px;
+    margin: auto;
+    min-height: 100%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 5px;
+}
+.dynamic-shift
+{
+    padding: 5px;
+}
+
+.en
+{
+    width: 100%;
+    border: 0px solid #ccc;
+    position: relative;
+    /*
+    overflow-x: scroll;
+    overflow:auto;
+    white-space: nowrap;
+    scrollbar-width: none;  */
+}
+.day-left, .day-now, .day-right
+{
+    display: block;
+    background-color:rgb(0, 163, 163);
+    margin: 0px 0px;
+    font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+    text-align: center;
+    border-radius: 3px;
+    position: relative;
+}
+.day-left, .day-right
+{
+    font-size: 16px;
+    background-color:rgb(0, 151, 151);
+    margin-top: auto;
+    margin-bottom: auto;
+}
+.day-now
+{
+    font-size: 20px;
+    margin: auto;
+    width: 100%;
+
+}
+.month
+{
+    font-size: 16px;
+    color: #eee;
+    border-bottom: 1px solid rgba(204, 204, 204, 0.349);
+    padding: 3px;
+}
+.date
+{
+    font-size: 26px;
+    color: #fff;
+    border-bottom: 1px solid rgba(204, 204, 204, 0.349);
+    padding: 5px;
+}
+.stat
+{
+    padding: 0px;
+    position: relative;
+    min-height: 20px;
+    text-align: left;
+}
+
+
+.data
+{
+    width: 50px;
+    font-size: 22px;
+}
+
+.completion
+{
+    font-size: 12px;
+    color: white;
+    font-size: 12px;
+    margin: 0px;
+    margin-left: 10px;
+}
+
+.bar
+{
+    background:rgb(39, 0, 0);
+    height: 5px;
+    margin: 0px;
+}
+
+
+.top-intro
+{
+    background-color: #eaf1f1;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.limiter
+{
+    margin: auto;
+    max-width: 1024px;
+    border: 0px solid red;
+    overflow: hidden;
+}
+.txt-logo
+{
+    letter-spacing: .5px;
+    font-size: 30px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 5px;
+}
+.welcome-text
+{
+    color: #00973a;
+    text-align: center;
+}
+.timetables
+{
+    color: #00973a;
+}
+.time-title
+{
+    color: #00792e;
+    border-bottom: 1px solid #ccc;
+}
+.segment
+{
+    padding-left: 5%;
+    text-align: left;
+}
+.segment-name
+{
+    color: #000e05;
+    font-size: 22px;
+}
+.segment-value
+{
+    color: #000e05;
+    font-size: 24px;
+}
+
+.scheduler
+{
+    width: 100%;
+}
+
+table, tr, th, td
+{
+    border: 1px solid rgba(0, 0, 0, 0.246);
+    border-collapse: collapse;
+}
+th, td
+{
+    text-align: left;
+    padding: 5px;
+    font-size: 18px;
+}
+
+.dynamic-shift
+{
+    display: grid;
+    grid-template-columns: 100%;
+    border: 1px solid #ccc;
+}
+.remaining
+{
+    border: 1px solid #ccc;
+    padding: 15px;
+    text-align: center;
+}
+
+
+.value-rem
+{
+    font-size: 60px;
+}
+
+.text-rem
+{
+    font-size: 35px;
+    border-top: 1px solid #ccc;
+}
+
+@media only screen and (min-width: 480px)
+
+{
+    .nav-m-i-c{ grid-template-columns: auto auto;}
+}
+@media only screen and (min-width: 768px)
+
+{
+        /* .day-now{ width: 60%;} */
+        .dynamic-shift{ grid-template-columns: 40% 60%;}
+}
+
+
+</style>
+
+</head>
+<body>
+    <div class="top-intro">
+        <div class="limiter">
+            <span class="txt-logo"><span style="color: #666;font-weight: bold;">takerhat</span><span style="color: #6caf90;">.com</span></span>
+        </div>
+    </div>
+<!--
+    Month:<input type="number" id="month" class="data" /> Day:<input type="number" id="day"  class="data" /><br>
+    Hour:<input type="number" id="hour"  class="data" /> Minutes: <input type="number" id="min"  class="data" /><br>
+    <button onclick="apply()" style="font-size: 24px;">Apply</button>  -->
+<div class="primary">
+    <div class="welcome">
+        <h2 class="welcome-text">Ramadan Mubarak!</h2>
+
+    </div>
+
+<div class="dynamic-shift">
+    <div class="remaining">
+        <div class="value-rem" id="rem_time">3h 47m</div>
+        <div class="text-rem" id="rem_txt">for Sahri</div>
+    </div>
+
+    <div class="dates">
+        <div class="en">
+            <div class="day-now">
+                <div class="month" id="eng_mon"></div>
+                <div class="date" id="eng_day"></div>
+                <div class="stat">
+                    <div class="completion" id="eng_comp">35% - 3h 35min remaining</div>
+                    <div class="bar" id="eng_bar" style="width:90%;"></div>
+                </div>
+            </div>
+        </div>
+        <div class="en" id="hijri">
+            <div class="day-now">
+                <div class="month" id="hijri_mon">Shaban</div>
+                <div class="date" id="hijri_day">30</div>
+                <div class="stat">
+                    <div class="completion" id="hijri_comp">35% - 3h 35min remaining</div>
+                    <div class="bar" id="hijri_bar" style="width:90%;"></div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+
+</div>
+
+    <div class="timetables">
+        <h2 class="time-title">Timetables:</h2>
+
+        <table class="scheduler">
+            <tr>
+                <th>Event</th><th>Time</th><th>Status</th>
+            </tr>
+            <tr>
+                <td>Sahri ends</td><td>4:20 AM</td><td>-</td>
+            </tr>
+            <tr>
+                <td>Fajr starts</td><td>4:23 AM</td><td>-</td>
+            </tr>
+            <tr>
+                <td>Duhr starts</td><td>12:01 PM</td><td>3h 5m</td>
+            </tr>
+            <tr>
+                <td>Asr starts</td><td>4:31 PM</td><td>4h 7m</td>
+            </tr>
+            <tr>
+                <td>Magrib starts</td><td>6:20 PM</td><td>6h 2m</td>
+            </tr>
+            <tr>
+                <td>Isha starts(next-ramadan)</td><td>7:50 PM</td><td>7h 34m</td>
+            </tr>
+        </table>
+
+
+
+
+
+
+
+    </div>
+
+</div>
+
+
+
+<script>
+
+    //First Get Today and Now
+
+    //Set time
+    var d = new Date();
+    var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    document.getElementById("eng_mon").innerHTML = months[d.getMonth()];
+    document.getElementById("eng_day").innerHTML = d.getDate();
+
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+    var myObj = JSON.parse(this.responseText);}
+    };
+    xmlhttp.open("GET", "data_file.json", true);
+    xmlhttp.send();
+
+    
+
+
+/*
+
+
+    
+    var r = [{"name": "Shaban", "n": 29, "m": 4, "d": 11},
+    {"name": "Shaban", "n": 30, "m": 4, "d": 12},
+    {"name": "Ramadan", "n": 1, "m": 4, "d": 13},
+    {"name": "Ramadan", "n": 2, "m": 4, "d": 14},
+    {"name": "Ramadan", "n": 3, "m": 4, "d": 15},
+    {"name": "Ramadan", "n": 4, "m": 4, "d": 16},
+    {"name": "Ramadan", "n": 5, "m": 4, "d": 17},
+    {"name": "Ramadan", "n": 6, "m": 4, "d": 18},
+    {"name": "Ramadan", "n": 7, "m": 4, "d": 19},
+    {"name": "Ramadan", "n": 8, "m": 4, "d": 20},
+    {"name": "Ramadan", "n": 9, "m": 4, "d": 21},
+    {"name": "Ramadan", "n": 10, "m": 4, "d": 22},
+    {"name": "Ramadan", "n": 11, "m": 4, "d": 23},
+    {"name": "Ramadan", "n": 12, "m": 4, "d": 24},
+    {"name": "Ramadan", "n": 13, "m": 4, "d": 25},
+    {"name": "Ramadan", "n": 14, "m": 4, "d": 26},
+    {"name": "Ramadan", "n": 15, "m": 4, "d": 27},
+    {"name": "Ramadan", "n": 16, "m": 4, "d": 28},
+    {"name": "Ramadan", "n": 17, "m": 4, "d": 29},
+    {"name": "Ramadan", "n": 18, "m": 4, "d": 30},
+    {"name": "Ramadan", "n": 19, "m": 5, "d": 1},
+    {"name": "Ramadan", "n": 20, "m": 5, "d": 2},
+    {"name": "Ramadan", "n": 21, "m": 5, "d": 3},
+    {"name": "Ramadan", "n": 22, "m": 5, "d": 4},
+    {"name": "Ramadan", "n": 23, "m": 5, "d": 5},
+    {"name": "Ramadan", "n": 24, "m": 5, "d": 6},
+    {"name": "Ramadan", "n": 25, "m": 5, "d": 7},
+    {"name": "Ramadan", "n": 26, "m": 5, "d": 8},
+    {"name": "Ramadan", "n": 27, "m": 5, "d": 9},
+    {"name": "Ramadan", "n": 28, "m": 5, "d": 10},
+    {"name": "Ramadan", "n": 29, "m": 5, "d": 11},
+    {"name": "Ramadan", "n": 30, "m": 5, "d": 12},
+    {"name": "Shawwal", "n": 1, "m": 5, "d": 13}];
+
+
+
+    //var i =  0;
+    for(i=0; toTimestamp(2021,r[i].m,r[i].d,r[i].h,r[i].mi,0) < Math.round(Date.now()/1000 + 00); ++i) {
+    }
+    i-=1;
+    console.log("ramadan no is: " + r[i].n + ". Started at: 2021-" + r[i].m + "-" + r[i].d + "  " + r[i].h + ":" + r[i].mi);
+
+    console.log("ok");
+
+
+    function toTimestamp(year,month,day,hour,minute,second){
+     var datum = new Date(Date.UTC(year,month-1,day,hour,minute,second));
+     return datum.getTime()/1000 - 21600;
+    }
+
+
+    function remaining(next_time)
+    {
+
+
+        return time_available;
+    }
+
+
+
+*/
+</script>
+
+</body>
+</html>
